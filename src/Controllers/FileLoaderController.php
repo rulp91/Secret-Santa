@@ -69,23 +69,21 @@ class FileLoaderController implements Input {
 	 */
 	public function read(): array {
 		if ($this->load()) {
-			while (($buffer = fgets($this->handle, filesize($this->filePath))) !== false) {
-				$this->store($buffer);
-			}
+			$this->readFile();
 			$this->closeFileIfNeeded();
 		} else {
 			$this->closeFileIfNeeded();
-			throw new Exception('El fichero no puede ser leido ya sea por falta de permisos o porque la ruta está mal');
+			throw new \Exception('El fichero no puede ser leido ya sea por falta de permisos o porque la ruta está mal');
 		}
 
-		return $this->lines;
+		return $this->linesReaded;
 	}
 
 	/**
 	 * Evita que se pueda clonar el Singleton
 	 */
 	public function __clone() {
-		throw new Exception('No se puede clonar un objeto sigleton');
+		throw new \Exception('No se puede clonar un objeto sigleton');
 	}
 
 	/**
@@ -96,8 +94,8 @@ class FileLoaderController implements Input {
 	 * @return bool
 	 */
 	private function load() {
-		if ($this->handle = fopen($this->filePath, 'cb+')) {
-			return $this;
+		if ($this->handleFopenConnection = fopen($this->filePath, 'cb+')) {
+			return $this->handleFopenConnection;
 		}
 
 		return false;
@@ -107,8 +105,8 @@ class FileLoaderController implements Input {
 	 * Cierra el descriptor de fichero
 	 */
 	private function closeFileIfNeeded() {
-		if (!feof($this->handle)) {
-			fclose($this->handle);
+		if (!feof($this->handleFopenConnection)) {
+			fclose($this->handleFopenConnection);
 		}
 	}
 
@@ -117,6 +115,15 @@ class FileLoaderController implements Input {
 	 * @type string $buffer
 	 */
 	private function store($buffer) {
-		$this->lines[] = str_replace(PHP_EOL, '', $buffer);
+		$this->linesReaded[] = str_replace(PHP_EOL, '', $buffer);
+	}
+
+	/**
+	 * Itera para leer el fichero
+	 */
+	private function readFile(): void {
+		while (($buffer = fgets($this->handleFopenConnection, filesize($this->filePath))) !== false) {
+			$this->store($buffer);
+		}
 	}
 }
