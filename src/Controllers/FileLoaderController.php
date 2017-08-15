@@ -109,13 +109,14 @@ class FileLoaderController implements Input {
 	 * @type string $buffer
 	 */
 	private function store($buffer) {
-		$this->linesReaded[] = str_replace(PHP_EOL, '', $buffer);
+		$this->linesReaded[] = str_replace(PHP_EOL, '', trim($buffer));
 	}
 
 	/**
 	 * Itera para leer el fichero
 	 */
 	private function readFile(): void {
+		$this->handleFopenConnection = fopen($this->filePath, 'cb+');
 		while (($buffer = fgets($this->handleFopenConnection, filesize($this->filePath))) !== false) {
 			$this->store($buffer);
 		}

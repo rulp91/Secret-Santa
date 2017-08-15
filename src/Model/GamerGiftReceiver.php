@@ -35,7 +35,7 @@ class GamerGiftReceiver {
 	 * Sobreescribe el toString
 	 */
 	public function __toString() {
-		return $this->gamer . " -> " . $this->giftReceiver;
+		return $this->gamer . " -> " . $this->giftReceiver . "\n";
 	}
 
 }
