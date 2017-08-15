@@ -20,7 +20,7 @@ class FileLoaderController implements Input {
 
 	/**
 	 * Indica si la apertura del fichero fue satisfactoria
-	 * @type bool
+	 * @type resource
 	 */
 	private $handleFopenConnection;
 
@@ -68,7 +68,7 @@ class FileLoaderController implements Input {
 	 * @return string[] An array with all player names as strings
 	 */
 	public function read(): array {
-		if ($this->load()) {
+		if ($this->existsFile()) {
 			$this->readFile();
 			$this->closeFileIfNeeded();
 		} else {
@@ -89,16 +89,10 @@ class FileLoaderController implements Input {
 	/**
 	 * Comprueba si el fichero puede ser leido
 	 *
-	 * @param string $file_url
-	 *
 	 * @return bool
 	 */
-	private function load() {
-		if ($this->handleFopenConnection = fopen($this->filePath, 'cb+')) {
-			return $this->handleFopenConnection;
-		}
-
-		return false;
+	private function existsFile() {
+		return filesize($this->filePath) > 0;
 	}
 
 	/**
