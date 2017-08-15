@@ -109,7 +109,7 @@ class FileLoaderController implements Input {
 	 * @type string $buffer
 	 */
 	private function store($buffer) {
-		$this->linesReaded[] = str_replace(PHP_EOL, '', $buffer);
+		$this->linesReaded[] = str_replace(PHP_EOL, '', trim($buffer));
 	}
 
 	/**
