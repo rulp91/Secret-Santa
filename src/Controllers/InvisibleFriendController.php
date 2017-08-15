@@ -168,13 +168,14 @@ class InvisibleFriendController {
 	 * @return bool
 	 */
 	private function isSeleccionable($person, $posibleGiftReceiver) {
-		if ($this->persons->count() != 2 && $person != $posibleGiftReceiver) {
+		if (strcasecmp($person, $posibleGiftReceiver) == 0)
+			return false;
+		else if ($this->persons->count() != 2 && strcasecmp($person, $posibleGiftReceiver) != 0)
 			return true;
-		}
 
 		$x = array_values(array_diff($this->persons->toArray(), array($person)));
 		$y = array_values(array_diff($this->posibleInvisibleFriends->toArray(), array($posibleGiftReceiver)));
 
-		return $x[0] != $y[0];
+		return strcasecmp($x[0], $y[0]) != 0;
 	}
 }
