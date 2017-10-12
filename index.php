@@ -21,61 +21,69 @@ foreach ($results as $pair) {
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Amigo invisible</title>
-    <script src="jquery-3.2.1.min.js"></script>
-</head>
-<style type="text/css">
-    div.inline {
-        float: left;
-    }
 
-    .clearBoth {
-        clear: both;
-    }
-</style>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Basic Form</title>
+
+    <link rel="stylesheet" href="assets/demo.css">
+    <link rel="stylesheet" href="assets/form-basic.css">
+    <script src="assets/jquery-3.2.1.min.js"></script>
+</head>
+
 <body>
 
-<h1>El amigo invisible</h1>
-<p>Selecciona tu nombre en el desplegable y veras a quien te toca regalarle </p>
+<header>
+    <h1>El amigo invisible en la familia P&eacute;rez</h1>
+</header>
 
-<div class="inline">
+<div class="main-content">
 
-</div>
-<div class="inline">
-    <select id="selectGamer">
-        <option value="-1">......Seleccione.....</option>
-        <?php
-        $i = 0;
-        foreach ($gamers as $gamer) {
-            ?>
-            <option value="<?php echo $i; ?>"><?php echo $gamer; ?></option>
+    <form class="form-basic" method="post" action="#" id="formBasic">
+        <div class="form-title-row">
+            <h1>Selecciona tu nombre en el desplegable y veras a quien te toca regalarle</h1>
+        </div>
+
+        <div class="inline">
+            <select id="selectGamer">
+                <option value="-1">......Seleccione.....</option>
+                <?php
+                $i = 0;
+                foreach ($gamers as $gamer) {
+                    ?>
+                    <option value="<?php echo $i; ?>"><?php echo $gamer; ?></option>
+                    <?php
+                    $i++;
+                }
+                ?>
+            </select>
+        </div>
+        <div class="inline">
+            <span id="showGiftReceiver"></span>
+        </div>
+        <br class="clearBoth"/>
+
+        <br/>
+        <button id="cleanResult">Pulsa para limpiar el resultado</button>
+
+        <br/>
+        <button id="printResult">Pulsa para imprimir el resultado</button>
+
+        <br/>
+        <div style="display: none" id="result">
             <?php
-            $i++;
-        }
-        ?>
-    </select>
-</div>
-<div class="inline">
-    <span id="showGiftReceiver"></span>
-</div>
-<br class="clearBoth"/>
-
-<br/>
-<button id="cleanResult">Pulsa para limpiar el resultado</button>
-
-<br/>
-<button id="printResult">Pulsa para imprimir el resultado</button>
-
-<br/>
-<div style="display: none" id="result">
-    <?php
-    foreach ($results as $pair) {
-        ?>
-        <p><?php echo $pair; ?></p>
-        <?php
-    }
-    ?>
+            foreach ($results as $pair) {
+                ?>
+                <p><?php echo $pair; ?></p>
+                <?php
+            }
+            ?>
+        </div>
+    </form>
 </div>
 
 </body>
@@ -96,6 +104,10 @@ foreach ($results as $pair) {
     $('#printResult').on('click', function () {
         $('#result').toggle();
     })
+
+    $( "#formBasic" ).submit(function( event ) {
+        event.preventDefault();
+    });
 
 </script>
 </html>

@@ -23,7 +23,7 @@ foreach ($results as $pair) {
 <html>
 <head>
     <title>Amigo invisible</title>
-    <script src="jquery-3.2.1.min.js"></script>
+    <script src="assets/jquery-3.2.1.min.js"></script>
 </head>
 <style type="text/css">
     div.inline {
