@@ -31,6 +31,22 @@ class GamerGiftReceiver {
 		$this->giftReceiver = $giftReceiver;
 	}
 
+    /**
+     * @return string
+     */
+    public function getGamer(): string
+    {
+        return $this->gamer;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGiftReceiver(): string
+    {
+        return $this->giftReceiver;
+    }
+
 	/**
 	 * Sobreescribe el toString
 	 */

@@ -42,18 +42,21 @@ class GameController implements Game, Output {
 	/**
 	 * Ejecuta el juego
 	 */
-	public function play() {
+	public function play() : array {
 
 		$gamers = $this->readPlayers();
 
 		$invisibleFriendController = InvisibleFriendController::getInstance();
 		$invisibleFriendController->setGamers($gamers);
 
+		$results = array();
 		while ($invisibleFriendController->isThereMorePosibilitities()) {
 			if ($pair = $invisibleFriendController->getNextPairPersonAndGiftReceiver()) {
-				$this->printLine($pair);
+			   $results[] = $pair;
 			}
 		}
+
+		return $results;
 	}
 
 	/**
