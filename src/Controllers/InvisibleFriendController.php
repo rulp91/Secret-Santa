@@ -61,7 +61,7 @@ class InvisibleFriendController {
 	 * Retorna una pareja de jugador y amigo invisible o null en caso de que no se haya podido generar dicha pareja
 	 * @return null | GamerGiftReceiver
 	 */
-	public function getNextPairPersonAndGiftReceiver() {
+	public function getNextPairPersonAndGiftReceiver(): ?GamerGiftReceiver {
 		$person       = $this->getFriend($this->generate(0, ($this->persons->count() - 1)));
 		$giftReceiver = $this->getGiftReceiver($this->generate(0, ($this->posibleInvisibleFriends->count() - 1)));
 
