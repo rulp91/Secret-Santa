@@ -48,27 +48,27 @@ foreach ($results as $pair) {
             <h1>Selecciona tu nombre en el desplegable y veras a quien te toca regalarle</h1>
         </div>
 
-        <div class="inline">
-            <select id="selectGamer">
-                <option value="-1">......Seleccione.....</option>
-                <?php
-                $i = 0;
-                foreach ($gamers as $gamer) {
-                    ?>
-                    <option value="<?php echo $i; ?>"><?php echo $gamer; ?></option>
-                    <?php
-                    $i++;
-                }
-                ?>
-            </select>
-        </div>
-        <div class="inline">
-            <span id="showGiftReceiver"></span>
-        </div>
-        <br class="clearBoth"/>
-
-        <br/>
-        <button id="cleanResult">Pulsa para limpiar el resultado</button>
+<!--        <div class="inline">-->
+<!--            <select id="selectGamer">-->
+<!--                <option value="-1">......Seleccione.....</option>-->
+<!--                --><?php
+//                $i = 0;
+//                foreach ($gamers as $gamer) {
+//                    ?>
+<!--                    <option value="--><?php //echo $i; ?><!--">--><?php //echo $gamer; ?><!--</option>-->
+<!--                    --><?php
+//                    $i++;
+//                }
+//                ?>
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div class="inline">-->
+<!--            <span id="showGiftReceiver"></span>-->
+<!--        </div>-->
+<!--        <br class="clearBoth"/>-->
+<!---->
+<!--        <br/>-->
+<!--        <button id="cleanResult">Pulsa para limpiar el resultado</button>-->
 
         <br/>
         <button id="printResult">Pulsa para imprimir el resultado</button>
